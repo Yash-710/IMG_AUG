@@ -17,7 +17,7 @@ jobs:
         run: test -f index.html
 
       - name: Check title exists
-        run: grep -q "<title>" rain.html
+        run: grep -q "<title>" index.html
 
       - name: TESTING_DEPLOY_HOOK
         run: curl -X POST "${{ secrets.TESTING_DEPLOY_HOOK }}"
