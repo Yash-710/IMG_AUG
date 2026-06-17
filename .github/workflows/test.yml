@@ -13,8 +13,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Check fake file exists
-        run: test -f abcxyz.html
+      - name: Check index.html exists
+        run: test -f index.html
 
       - name: Check title exists
         run: grep -q "<title>" index.html
+
+      - name: TESTING_DEPLOY_HOOK
+        run: curl -X POST "${{ secrets.NETLIFY_DEPLOY_HOOK }}"
