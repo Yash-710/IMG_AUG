@@ -1,76 +1,99 @@
-Image Augmentation Pipeline
-This project provides a powerful and highly customizable image augmentation pipeline designed to increase the number of images for ML training. It uses the Albumentations library to apply a wide range of transformations.
+Overview
+This project is a static web page that mimics the look and feel of the Myntra fashion e-commerce platform. It includes:
 
-✨ Key Features
-37 Diverse Augmentations: A comprehensive set of transformations covering color, geometry, noise, weather, and lighting.
-Bounding Box Safe: All transformations are compatible with YOLO format bounding boxes, ensuring label integrity is maintained throughout the pipeline.
-Ready for Training: The script processes an entire directory of images and saves the augmented versions, ready for model training.
-🚀 Getting Started
-Prerequisites
-Python 3.8+
-A virtual environment (recommended)
-Installation
-Clone the repository:
+A sticky navigation bar with search functionality
 
-git clone https://github.com/{YOUR_USERNAME}/imageaug-feature_yash.git
-cd imageaug-feature_yash
-Create and activate a virtual environment:
+Promotional banner sections
 
-python -m venv env
-.\env\Scripts\activate
-Install the required dependencies: A requirements.txt file is recommended. If you don't have one, you can create it with:
+Category navigation pills
 
-pip freeze > requirements.txt
-Then install with:
+Product grids with real clothing images
 
-pip install -r requirements.txt
-Usage
-Place your source images and corresponding YOLO annotation files (.txt) in the images directory.
-Run the main script:
-python main.py
-The augmented images and their annotations will be saved in the output directory.
-🎨 Available Augmentations
-The pipeline applies the following 37 augmentations:
+Footer with links and social media icons
 
-Geometric & Crop
-RandomSizedBBoxSafeCrop
-HorizontalFlip
-VerticalFlip
-ShiftScaleRotate
-RandomRotate90
-Transpose
-OpticalDistortion
-GridDistortion
-ElasticTransform
-PadIfNeeded
-Color & Contrast
-RandomBrightnessContrast
-HueSaturationValue
-RGBShift
-RandomGamma
-CLAHE
-ChannelShuffle
-InvertImg
-ToGray
-ToSepia
-ColorJitter
-Blur & Noise
-Blur
-MotionBlur
-MedianBlur
-GaussianBlur
-GaussNoise
-ISONoise
-Weather & Environment (Adaptive)
-RandomRain (Adaptive)
-RandomSnow
-RandomFog
-RandomSunFlare (Adaptive & Multi-Location)
-RandomShadow
-Other
-Cutout
-Posterize
-Solarize
-Equalize
-Downscale
-ImageCompression
+Fully responsive design for all screen sizes
+
+✨ Features
+Responsive Layout: Adapts seamlessly from desktop to mobile devices
+
+Sticky Header: Navigation bar stays fixed while scrolling
+
+Real Product Images: Uses high-quality placeholder images (via picsum.photos) for clothing items
+
+Interactive Elements: Hover effects on products, buttons, and navigation links
+
+Modern Design: Clean, minimal aesthetic with Myntra's signature pink accent color
+
+Product Cards: Display brand, description, pricing with discounts, and "Add to Bag" buttons
+
+Category Navigation: Quick access to different product categories
+
+Footer: Organized links and social media integration
+
+🛠️ Technologies Used
+HTML5: Semantic markup structure
+
+CSS3: Custom styling with flexbox and grid layouts
+
+Font Awesome 6: Icon library for navigation and UI elements
+
+Google Fonts: Inter font family (fallback included)
+
+Picsum Photos: Placeholder image service for product visuals
+
+📁 File Structure
+text
+myntra-clone/
+├── index.html          # Main HTML file (contains all CSS and HTML)
+└── README.md           # Project documentation
+🚀 How to Use
+Clone or download this repository
+
+Open index.html in any modern web browser
+
+No server or build tools required - it's a static HTML page!
+
+📱 Responsive Breakpoints
+Desktop: Full layout with 3-column banners and flexible product grid
+
+Tablet (≤900px): Stacked navigation, 2-column banners
+
+Mobile (≤550px): Single-column banners, 2-column product grid, compact spacing
+
+🎨 Design Highlights
+Color Palette:
+
+Primary: #ff3f6c (Myntra pink)
+
+Background: #f5f5f6
+
+Text: #1a1a1a, #282c3f
+
+Typography: Clean, modern sans-serif with proper hierarchy
+
+Card Design: Subtle shadows, rounded corners, and hover animations
+
+Button Styling: Pill-shaped buttons with smooth hover transitions
+
+📝 Notes
+The product images are sourced from picsum.photos as placeholders
+
+All links (#) are non-functional - this is a static demonstration
+
+The search bar is visual-only with no backend functionality
+
+All product data (prices, discounts, brands) is sample data for demonstration
+
+🔧 Customization
+To customize the page:
+
+Replace product images by changing the src attribute in <img> tags
+
+Update product details (brand, description, prices) in the product cards
+
+Modify the color scheme by changing CSS variables or direct color values
+
+Add real links to navigation items and footer sections
+
+📄 License
+This is a demonstration project for educational purposes. Myntra is a registered trademark and this project is not affiliated with or endorsed by Myntra.

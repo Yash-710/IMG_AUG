@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myntra · Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f6;
+            color: #1a1a1a;
+        }
+
+        /* ------ header / navbar ------ */
+        .navbar {
+            background-color: #ffffff;
+            padding: 12px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .myntra-logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #ff3f6c;
+            background: #ffffff;
+            padding: 2px 0;
+        }
+
+        .myntra-logo i {
+            font-size: 26px;
+            margin-right: 2px;
+        }
+
+        .myntra-logo span {
+            color: #1a1a1a;
+            font-weight: 300;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #282c3f;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #282c3f;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #ff3f6c;
+        }
+
+        .nav-links .sup {
+            color: #ff3f6c;
+            font-size: 10px;
+            vertical-align: super;
+            margin-left: 2px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+            color: #282c3f;
+            cursor: pointer;
+            transition: color 0.2s;
+            text-decoration: none;
+        }
+
+        .nav-icon i {
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+
+        .nav-icon:hover {
+            color: #ff3f6c;
+        }
+
+        .search-bar {
+            background: #f5f5f6;
+            border-radius: 6px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 300px;
+            border: 1px solid #e8e8e8;
+        }
+
+        .search-bar i {
+            color: #7e818c;
+            font-size: 16px;
+        }
+
+        .search-bar input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            font-size: 14px;
+            color: #1a1a1a;
+        }
+
+        .search-bar input::placeholder {
+            color: #a3a6b0;
+        }
+
+        /* ------ main container ------ */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 30px 40px;
+        }
+
+        /* ------ banner / hero with actual clothing images (self-hosted / placeholder) ------ */
+        .banner-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .banner-card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+            transition: transform 0.2s;
+            cursor: default;
+        }
+
+        .banner-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #eaeef3;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+
+        .banner-card .banner-text {
+            padding: 12px 16px 16px;
+        }
+
+        .banner-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .banner-card p {
+            font-size: 13px;
+            color: #7e818c;
+            margin-top: 4px;
+        }
+
+        /* ------ category pills ------ */
+        .category-strip {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 18px 28px;
+            background: #ffffff;
+            padding: 16px 20px;
+            border-radius: 40px;
+            margin-bottom: 36px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .category-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 500;
+            color: #282c3f;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .category-item i {
+            font-size: 24px;
+            margin-bottom: 4px;
+            color: #ff3f6c;
+        }
+
+        .category-item:hover {
+            color: #ff3f6c;
+        }
+
+        /* ------ section headers ------ */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin: 30px 0 16px;
+        }
+
+        .section-header h2 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            color: #1a1a1a;
+        }
+
+        .section-header a {
+            color: #ff3f6c;
+            font-weight: 500;
+            font-size: 14px;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border 0.2s;
+        }
+
+        .section-header a:hover {
+            border-bottom: 1px solid #ff3f6c;
+        }
+
+        /* ------ product grid with real clothing images (generated / placeholder) ------ */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 12px 12px 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #f0f0f0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+            border-color: #e0e0e0;
+        }
+
+        /* product image – now using <img> with real clothing pics (generated) */
+        .product-img {
+            background: #f2f4f8;
+            border-radius: 8px;
+            width: 100%;
+            aspect-ratio: 1 / 1.2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 10px;
+            background: #f0f2f5;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.02);
+        }
+
+        .product-brand {
+            font-weight: 600;
+            font-size: 14px;
+            color: #1a1a1a;
+            margin-top: 2px;
+        }
+
+        .product-desc {
+            font-size: 13px;
+            color: #7e818c;
+            margin: 2px 0 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 6px;
+            flex-wrap: wrap;
+        }
+
+        .price-current {
+            font-weight: 700;
+            font-size: 16px;
+            color: #1a1a1a;
+        }
+
+        .price-original {
+            font-size: 13px;
+            color: #a3a6b0;
+            text-decoration: line-through;
+        }
+
+        .price-discount {
+            font-size: 13px;
+            color: #ff3f6c;
+            font-weight: 500;
+        }
+
+        .product-btn {
+            margin-top: 12px;
+            background: #ff3f6c;
+            border: none;
+            border-radius: 50px;
+            padding: 8px 0;
+            color: white;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background 0.2s;
+            width: 100%;
+        }
+
+        .product-btn:hover {
+            background: #e6335c;
+        }
+
+        /* ------ footer ------ */
+        .footer {
+            margin-top: 48px;
+            padding: 30px 20px 20px;
+            border-top: 1px solid #e8e8e8;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+            color: #4a4d5a;
+            font-size: 14px;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-col strong {
+            color: #1a1a1a;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .footer-col a {
+            text-decoration: none;
+            color: #4a4d5a;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: #ff3f6c;
+        }
+
+        .footer-bottom {
+            width: 100%;
+            text-align: center;
+            font-size: 13px;
+            color: #7e818c;
+            padding-top: 16px;
+            border-top: 1px solid #e8e8e8;
+            margin-top: 12px;
+        }
+
+        /* responsiveness */
+        @media (max-width: 900px) {
+            .navbar {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+                padding: 12px 16px;
+            }
+
+            .nav-left {
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            .search-bar {
+                width: 100%;
+            }
+
+            .nav-right {
+                justify-content: space-around;
+                gap: 12px;
+            }
+
+            .nav-links {
+                gap: 14px;
+                flex-wrap: wrap;
+            }
+
+            .banner-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .banner-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .category-strip {
+                gap: 10px 14px;
+                border-radius: 28px;
+                padding: 12px;
+            }
+
+            .container {
+                padding: 12px 12px 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ======== NAVBAR ======== -->
+    <header class="navbar">
+        <div class="nav-left">
+            <div class="myntra-logo">
+                <i class="fas fa-shopping-bag"></i>Myntra<span>.</span>
+            </div>
+            <div class="nav-links">
+                <a href="#">Men</a>
+                <a href="#">Women</a>
+                <a href="#">Kids</a>
+                <a href="#">Home & Living</a>
+                <a href="#">Beauty</a>
+                <a href="#">Studio <span class="sup">NEW</span></a>
+            </div>
+        </div>
+
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search for products, brands and more">
+        </div>
+
+        <div class="nav-right">
+            <a href="#" class="nav-icon"><i class="far fa-user"></i> Profile</a>
+            <a href="#" class="nav-icon"><i class="far fa-heart"></i> Wishlist</a>
+            <a href="#" class="nav-icon"><i class="fas fa-shopping-bag"></i> Bag</a>
+        </div>
+    </header>
+
+    <!-- ======== MAIN ======== -->
+    <main class="container">
+
+        <!-- ====== BANNER with real clothing images (self-hosted / generated) ====== -->
+        <div class="banner-grid">
+            <div class="banner-card">
+                <!-- using picsum with fashion-related ID (clothing) -->
+                <img src="https://picsum.photos/id/1/600/400" alt="Fashion banner 1" loading="lazy">
+                <div class="banner-text">
+                    <h3>End of Season Sale</h3>
+                    <p>Up to 60% off on top brands</p>
+                </div>
+            </div>
+            <div class="banner-card">
+                <img src="https://picsum.photos/id/21/600/400" alt="Fashion banner 2" loading="lazy">
+                <div class="banner-text">
+                    <h3>Premium Picks</h3>
+                    <p>Curated luxury fashion</p>
+                </div>
+            </div>
+            <div class="banner-card">
+                <img src="https://picsum.photos/id/30/600/400" alt="Fashion banner 3" loading="lazy">
+                <div class="banner-text">
+                    <h3>Sustainable Style</h3>
+                    <p>Eco‑conscious brands</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- category strip -->
+        <div class="category-strip">
+            <div class="category-item"><i class="fas fa-tshirt"></i> T‑Shirts</div>
+            <div class="category-item"><i class="fas fa-shoe-prints"></i> Sneakers</div>
+            <div class="category-item"><i class="fas fa-hat-cowboy"></i> Caps</div>
+            <div class="category-item"><i class="fas fa-clock"></i> Watches</div>
+            <div class="category-item"><i class="fas fa-sun"></i> Sunglasses</div>
+            <div class="category-item"><i class="fas fa-ring"></i> Accessories</div>
+        </div>
+
+        <!-- ====== PRODUCT SECTION 1 : TRENDING NOW with real clothing images ====== -->
+        <div class="section-header">
+            <h2>Trending Now</h2>
+            <a href="#">View all <i class="fas fa-chevron-right" style="font-size: 10px;"></i></a>
+        </div>
+        <div class="product-grid">
+
+            <div class="product-card">
+                <div class="product-img"><img src="https://picsum.photos/id/26/300/360" alt="H&M tee" loading="lazy">
+                </div>
+                <div class="product-brand">H&M</div>
+                <div class="product-desc">Oversized cotton tee</div>
+                <div class="product-price">
+                    <span class="price-current">₹799</span>
+                    <span class="price-original">₹1,499</span>
+                    <span class="price-discount">(47% OFF)</span>
+                </div>
+                <button class="product-btn"><i class="fas fa-shopping-bag" style="margin-right: 6px;"></i>ADD TO
+                    BAG</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img"><img src="https://picsum.photos/id/48/300/360" alt="Nike sneakers"
+                        loading="lazy"></div>
+                <div class="product-brand">Nike</div>
+                <div class="product-desc">Air Max 270 React</div>
+                <div class="product-price">
+                    <span class="price-current">₹8,999</span>
+                    <span class="price-original">₹12,995</span>
+                    <span class="price-discount">(31% OFF)</span>
+                </div>
+                <button class="product-btn"><i class="fas fa-shopping-bag" style="margin-right: 6px;"></i>ADD TO
+                    BAG</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img"><img src="https://picsum.photos/id/62/300/360" alt="Polo cap" loading="lazy">
+                </div>
+                <div class="product-brand">Polo Club</div>
+                <div class="product-desc">Classic cotton cap</div>
+                <div class="product-price">
+                    <span class="price-current">₹499</span>
+                    <span class="price-original">₹999</span>
+                    <span class="price-discount">(50% OFF)</span>
+                </div>
+                <button class="product-btn"><i class="fas fa-shopping-bag" style="margin-right: 6px;"></i>ADD TO
+                    BAG</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img"><img src="https://picsum.photos/id/82/300/360" alt="Fossil watch"
+                        loading="lazy"></div>
+                <div class="product-brand">Fossil</div>
+                <div class="product-desc">Minimalist chronograph</div>
+                <div class="product-price">
+                    <span class="price-current">₹6,299</span>
+                    <span class="price-original">₹9,995</span>
+                    <span class="price-discount">(37% OFF)</span>
+                </div>
+                <button class="product-btn"><i class="fas fa-shopping-bag" style="margin-right: 6px;"></i>ADD TO
+                    BAG</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img"><img src="https://picsum.photos/id/99/300/360" alt="Ray-Ban sunglasses"
+                        loading="lazy"></div>
+                <div class="product-brand">Ray-Ban</div>
+                <div class="product-desc">Aviator sunglasses</div>
+                <div class="product-price">
+                    <span class="price-current">₹5,299</span>
+                    <span class="price-original">₹7,499</span>
+                    <span class="price-discount">(29% OFF)</span>
+                </div>
+                <button class="product-btn"><i class="fas fa-shopping-bag" style="margin-right: 6px;"></i>ADD TO
+                    BAG</button>
+            </div>
+        </div>
+
+        <!-- ====== PRODUCT SECTION 2 : NEW ARRIVALS with real clothing images ====== -->
+        <div class="section-header" style="margin-top: 40px;">
+            <h2>New Arrivals</h2>
+            <a href="#">View all <i class="fas fa-chevron-right" style="font-size: 10px;"></i></a>
+        </div>
+        <div class="product-grid">
+
+            <div class="product-card">
+                <div class="product-img"><img src="https://picsum.photos/id/104/300/360" alt="Zara linen shirt"
+                        loading="lazy"></div>
+                <div class="product-brand">Zara</div>
+                <div class="product-desc">Linen blend shirt</div>
+                <div class="product-price">
+                    <span class="price-current">₹2,299</span>
+                    <span class="price-original">₹3,999</span>
+                    <span class="price-discount">(42% OFF)</span>
+                </div>
+                <button class="product-btn"><i class="fas fa-shopping-bag" style="margin-right: 6px;"></i>ADD TO
+                    BAG</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img"><img src="https://picsum.photos/id/115/300/360" alt="Puma sneakers"
+                        loading="lazy"></div>
+                <div class="product-brand">Puma</div>
+                <div class="product-desc">RS-X retro sneakers</div>
+                <div class="product-price">
+                    <span class="price-current">₹6,499</span>
+                    <span class="price-original">₹9,999</span>
+                    <span class="price-discount">(35% OFF)</span>
+                </div>
+                <button class="product-btn"><i class="fas fa-shopping-bag" style="margin-right: 6px;"></i>ADD TO
+                    BAG</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img"><img src="https://picsum.photos/id/133/300/360" alt="GIVA bracelet"
+                        loading="lazy"></div>
+                <div class="product-brand">GIVA</div>
+                <div class="product-desc">Silver chain bracelet</div>
+                <div class="product-price">
+                    <span class="price-current">₹1,299</span>
+                    <span class="price-original">₹2,499</span>
+                    <span class="price-discount">(48% OFF)</span>
+                </div>
+                <button class="product-btn"><i class="fas fa-shopping-bag" style="margin-right: 6px;"></i>ADD TO
+                    BAG</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img"><img src="https://picsum.photos/id/158/300/360" alt="Titan edge watch"
+                        loading="lazy"></div>
+                <div class="product-brand">Titan</div>
+                <div class="product-desc">Edge stainless steel</div>
+                <div class="product-price">
+                    <span class="price-current">₹8,999</span>
+                    <span class="price-original">₹12,495</span>
+                    <span class="price-discount">(28% OFF)</span>
+                </div>
+                <button class="product-btn"><i class="fas fa-shopping-bag" style="margin-right: 6px;"></i>ADD TO
+                    BAG</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img"><img src="https://picsum.photos/id/169/300/360" alt="Vogue eyewear"
+                        loading="lazy"></div>
+                <div class="product-brand">Vogue Eyewear</div>
+                <div class="product-desc">Cat-eye sunglasses</div>
+                <div class="product-price">
+                    <span class="price-current">₹3,299</span>
+                    <span class="price-original">₹4,999</span>
+                    <span class="price-discount">(34% OFF)</span>
+                </div>
+                <button class="product-btn"><i class="fas fa-shopping-bag" style="margin-right: 6px;"></i>ADD TO
+                    BAG</button>
+            </div>
+
+        </div>
+
+        <!-- ======== FOOTER ======== -->
+        <footer class="footer">
+            <div class="footer-col">
+                <strong>ONLINE SHOPPING</strong>
+                <a href="#">Men</a>
+                <a href="#">Women</a>
+                <a href="#">Kids</a>
+                <a href="#">Home & Living</a>
+                <a href="#">Beauty</a>
+            </div>
+            <div class="footer-col">
+                <strong>CUSTOMER POLICIES</strong>
+                <a href="#">Contact Us</a>
+                <a href="#">FAQ</a>
+                <a href="#">T&C</a>
+                <a href="#">Returns</a>
+                <a href="#">Privacy</a>
+            </div>
+            <div class="footer-col">
+                <strong>EXPERIENCE</strong>
+                <a href="#">Myntra App</a>
+                <a href="#">Gift Cards</a>
+                <a href="#">Blog</a>
+                <a href="#">Careers</a>
+            </div>
+            <div class="footer-col">
+                <strong>KEEP IN TOUCH</strong>
+                <div style="display: flex; gap: 12px; font-size: 20px; margin-top: 4px;">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2026 Myntra. All rights reserved. | Made with <i class="fas fa-heart" style="color: #ff3f6c;"></i> in
+                India
+            </div>
+        </footer>
+
+    </main>
+</body>
+
+</html>
